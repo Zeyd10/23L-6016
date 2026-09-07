@@ -19,7 +19,7 @@ numeric_features = ["Pclass", "Age", "SibSp", "Parch", "Fare"]
 categorical_features = ["Sex", "Embarked"]
 
 # Preprocessing
-numeric_transformer = SimpleImputer(strategy="median")
+numeric_transformer = SimpleImputer(strategy="mean")
 
 categorical_transformer = Pipeline([
     ("imputer", SimpleImputer(strategy="most_frequent")),

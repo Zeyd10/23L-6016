@@ -6,6 +6,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 import joblib
+from sklearn.preprocessing import StandardScaler
 
 # Load dataset
 df = pd.read_csv("data/tested.csv")
@@ -19,7 +20,10 @@ numeric_features = ["Pclass", "Age", "SibSp", "Parch", "Fare"]
 categorical_features = ["Sex", "Embarked"]
 
 # Preprocessing
-numeric_transformer = SimpleImputer(strategy="median")
+numeric_transformer = Pipeline([
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+])
 
 categorical_transformer = Pipeline([
     ("imputer", SimpleImputer(strategy="most_frequent")),
